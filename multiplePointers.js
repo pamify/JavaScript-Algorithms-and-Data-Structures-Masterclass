@@ -22,7 +22,36 @@ function sumZero(arr) {
   }
 }
 
-console.log(sumZero([-3, -2, -1, 0, 1, 2, 3])); // [-3, 3]
-console.log(sumZero([-2, 0, 1, 3])); // undefined
-console.log(sumZero([1, 2, 3])); // undefined
+// console.log(sumZero([-3, -2, -1, 0, 1, 2, 3])); // [-3, 3]
+// console.log(sumZero([-2, 0, 1, 3])); // undefined
+// console.log(sumZero([1, 2, 3])); // undefined
 
+//=======================================
+
+/* Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted. */
+
+function countUniqueValues(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  let i = 0;
+
+  // pointer j will loop from index 1 to the rest of the array
+  for (let j = 1; j < arr.length; j++) {
+    // if i === j, j will increment by 1 inside the loop
+    if (arr[i] !== arr[j]) { // arr[1] = 1, arr[2] = 2   1 !== 2
+      // if the values do not match, increment i
+      i++;
+      // if the values do not match, reassign the value at arr[i] to be the value of arr[j] to modify the arr to have sorted unique numbers
+      arr[i] = arr[j]; // prev arr = [1, 1, 2, 3, 3, 4, 5, 6, 6, 7], current arr = [1, 2, 2, 3, 3, 4, 5, 6, 6] 
+    }
+  }
+  // i starts at index 0, so we want to add 1 to get the count of unique values in our modified array
+  return i + 1;
+}
+
+// console.log(countUniqueValues([1, 1, 1, 1, 1, 2])); // 2
+// console.log(countUniqueValues([1, 1, 2, 3, 3, 4, 5, 6, 6, 7])); // 7
+// console.log(countUniqueValues([])); // 0
+// console.log(countUniqueValues([-2, -1, -1, 0, 1])); // 4
